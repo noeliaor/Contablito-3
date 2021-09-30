@@ -7,8 +7,6 @@ const buttonIngresar = () => {
     let type;
     let IVA;
     let total;
-    let totalventas = JSON.parse(localStorage.getItem("totalventas"));
-    let totalcompras =JSON.parse(localStorage.getItem("totalcompras"));;
 
     //Verifico si es compra o venta
     if (document.getElementById('venta').checked) {
@@ -19,9 +17,12 @@ const buttonIngresar = () => {
 
     //Busco nombre del producto
     let productsids=[394,395,396,397];
-let productsnames=["Tornillo 2cm","Tornillo 3cm","Tornillo 4cm","Tornillo 5cm"];
-    for (var i = 0; i < length(productsids); i++){
-    if (idproduct==productsids[i]){
+
+let productsnames=["Tornillo 2cm","Tornillo 3cm","Tornillo 4cm","Tornillo 5cm"];    
+    for (var i = 0; i < productsids.length; i++){ 
+        
+    if (parseInt(idproduct)==productsids[i]){
+alert("Encontrado");
         nameproduct==productsnames[i];
     }
     }
@@ -37,17 +38,13 @@ let productsnames=["Tornillo 2cm","Tornillo 3cm","Tornillo 4cm","Tornillo 5cm"];
         IVA=0;
         total = parseInt(subtotal);
     }
-  // Ingresar un producto
+  // Ingresar un producto  
     if (idproduct && subtotal) {
-        tbody.innerHTML += `<tr><td>${nameproduct}</td><td>${idproduct}</td><td>${type}</td><td>${subtotal}</td><td>${IVA}</td><td>${total}</td></tr>`;
+        tbody.innerHTML += `<tr><td>${nameproduct}</td><td>${idproduct}</td><td>${type}</td><td>${subtotal}</td><td>${IVA}</td></tr>`;
     } else {     
         alert("No deben quedar campos vacíos");
     }
 };
-
-
-
-
 
 document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("totalcompras", JSON.stringify(0));
