@@ -4,11 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="script.js" defer></script>
-    <link href="style.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/dropzone.css" rel="stylesheet">
     <title>Contablito</title>
 </head>
 <body>
+  <nav class="site-header sticky-top py-1 bg-dark">
+    <div class="container d-flex flex-column flex-md-row justify-content-between">
+      <a class="py-2 d-none d-md-inline-block" href="index.html">Inventario</a>
+      <a class="py-2 d-none d-md-inline-block" href="categories.html">Gestión de productos</a>
+      <a class="py-2 d-none d-md-inline-block" href="products.html">Progreso</a>
+      <a class="py-2 d-none d-md-inline-block" href="sell.html">Gestión de usuarios</a>
+
+    </div>
+  </nav>
 <form>
     <h1 class="center" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Contablito</h1>
 <p class="center">ID <input id="ProductDescription"></input></p>
@@ -41,5 +51,15 @@
 </div>
 <p><div id="totalcompras"></div><div id="totalventas"></div></p>
 </form>
+<footer class="text-muted bg-light">
+  <div class="container">
+    <p>Este sitio fue creado por DN Servicios</p>
+    <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> por más información.</p>
+  </div>
+</footer>
 </body>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/dropzone.js"></script>
+<script src="js/script.js"></script>
 </html>
