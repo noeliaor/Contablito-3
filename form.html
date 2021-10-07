@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/dropzone.css" rel="stylesheet">
+    <title>Contablito</title>
+</head>
+
+<body>
+    <h1 class="center" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Contablito
+    </h1>
+
+    <nav class="site-header sticky-top py-1 bg-dark">
+        <div class="container d-flex flex-column flex-md-row justify-content-between">
+            <a class="py-2 d-none d-md-inline-block" style="color:white" href="index.html">Inventario</a>
+            <a class="py-2 d-none d-md-inline-block" style="color:white" href="form.html">Gestión de productos</a>
+            <a class="py-2 d-none d-md-inline-block" style="color:white" href="products.html">Progreso</a>
+            <a class="py-2 d-none d-md-inline-block" style="color:white" href="sell.html">Gestión de usuarios</a>
+        </div>
+    </nav>
+    <br>
+
+    <form>
+        <div class="container">
+            <div class="row container p-0 m-4">
+                <div class="col-auto">
+                    <p class="font-weight-bold my-2" style="margin-left: 17px;">Nombre:</p>
+                </div>
+                <div class="col-auto">
+                    <input class="form-control" type="search" id="newProductName">
+                </div>
+                <div class="row container p-0 m-4">
+                    <div class="col-auto">
+                        <p class="font-weight-bold my-2">Precio:</p>
+                    </div>
+                    <div class="col-auto">
+                        <input class="form-control" type="search" id="newCost">
+                    </div>
+                </div>
+                <p class="font-weight-bold my-2" style="margin-left: 32px;">Categoría:  </p>    <select id="tocategories" name="categories">
+                    <option selected value="0"> Elige una opción </option>
+                 </select><div id="newcategory"></div>
+                <div class="row container p-0 m-4">
+                    <div class="col-auto">
+                        <p class="font-weight-bold my-2">ID:</p>
+                    </div>
+                    <div class="col-auto">
+                        <input class="form-control" type="search" id="IDnewProduct" style="width:100px">
+                    </div>
+                </div>
+                <div class="row container p-0 m-4">
+                    <div class="col-auto">
+                        <p class="font-weight-bold my-2">Stock inicial:</p>
+                    </div>
+                    <div class="col">
+                        <input class="form-control" type="search" id="initialCount" style="width:100px">
+                    </div>
+                </div>
+                <div class="row container p-0 m-4">
+                    <div class="col-auto">
+                        <p class="font-weight-bold my-2">Stock mínimo:</p>
+                    </div>
+                    <div class="col">
+                        <input class="form-control" type="search" id="NewminStock" style="width:100px">
+                    </div>
+                </div>
+                    <div class="row container p-0 m-4">
+                        <div class="col p-0">
+                            <div class="btn-group" role="group">
+                                <button class="btn btn-light btn-block" id="btnGuardar">Guardar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+    </form>
+
+
+    <footer class="text-muted bg-light">
+        <div class="container">
+            <p>Este sitio fue creado por DN Servicios</p>
+            <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> por más información.</p>
+        </div>
+    </footer>
+</body>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/dropzone.js"></script>
+<script src="js/init.js"></script>
+<script src="js/formscript.js"></script>
+
+
+</html>

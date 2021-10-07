@@ -2,6 +2,8 @@ function cargaInicial() {
     let getlocal = localStorage.getItem("productslistSave"); // si no tengo datos cargo lista
     if (getlocal == null || getlocal == "" || getlocal == false || getlocal == undefined) {
 
+            let categorieslist=[{idpadre:39 ,name: "Tornillo"},{idpadre:40,name: "Ladrillo"}];
+  
         let productslist = [ //Genero listado de productos inicial
             { id: 394, name: "Tornillo 2cm", price: 20, stock: 400, minstock: 200 },
             { id: 395, name: "Tornillo 3cm", price: 30, stock: 560, minstock: 200 },
@@ -13,6 +15,8 @@ function cargaInicial() {
             { id: 403, name: "Ladrillo de vidrio", price: 540, stock: 1000, minstock: 300 },
         ];
         localStorage.setItem("productslistSave", JSON.stringify(productslist)); // Cargo lista por primera vez
+        localStorage.setItem("categorieslistSave", JSON.stringify(categorieslist)); //Guardo la nueva vista
+
     }
 }
 
