@@ -1,42 +1,102 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/dropzone.css" rel="stylesheet">
-    <title>Contablito</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/dropzone.css" rel="stylesheet">
+  <title>Contablito</title>
 </head>
+
 <body>
-  <h1 class="center" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Contablito</h1>
+  <h1 class="center" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Contablito
+  </h1>
 
   <nav class="site-header sticky-top py-1 bg-dark">
     <div class="container d-flex flex-column flex-md-row justify-content-between">
       <a class="py-2 d-none d-md-inline-block" style="color:white" href="index.html">Inventario</a>
-      <a class="py-2 d-none d-md-inline-block"  style="color:white" href="categories.html">Gestión de productos</a>
-      <a class="py-2 d-none d-md-inline-block"  style="color:white" href="products.html">Progreso</a>
-      <a class="py-2 d-none d-md-inline-block"  style="color:white" href="sell.html">Gestión de usuarios</a>
+      <a class="py-2 d-none d-md-inline-block" style="color:white" href="categories.html">Gestión de productos</a>
+      <a class="py-2 d-none d-md-inline-block" style="color:white" href="products.html">Progreso</a>
+      <a class="py-2 d-none d-md-inline-block" style="color:white" href="sell.html">Gestión de usuarios</a>
     </div>
   </nav>
   <br>
-<form>
- <p class="center">ID <input id="ProductDescription"></input></p>
-<br>
-<p class="center"> Tipo Transacción <input id="compra" type="radio" name="type" value="Compra" checked> Compra
-    <input id="venta"type="radio" name="type" value="Venta"> Venta
- </p>
- <br>
- <p class="center">Tipo IVA: <input id="basico" type="radio" name="typeIVA" value="basico"> Básico
-    <input id="minimo" type="radio" name="typeIVA" value="minimo"> Mínimo
-    <input id="exento" type="radio" name="typeIVA" value="exento" checked> Exento
- </p>
- <br>
-<p class="center">Cantidad <input id="subtotal"></input> <input id="btnIngresar" type="button" value="Guardar">  </input></p>
-<br>
-<div >
-    <table>
+
+  <form>
+    <div class="container">
+      <div class="row container p-0 m-0">
+        <div class="col-auto">
+          <p class="font-weight-bold my-2">ID</p>
+        </div>
+        <div class="col-auto">
+          <input class="form-control" type="search" id="ProductDescription">
+        </div>
+        <div class="col-auto">
+          <p class="font-weight-bold my-2">Nombre</p>
+        </div>
+        <div class="col-auto">
+          <input class="form-control" type="search" id="ProductName">
+        </div>
+        <div class="col-auto">
+          <p class="font-weight-bold my-2">ID Padre</p>
+        </div>
+        <div class="col-auto">
+          <input class="form-control" type="search" id="ProductDescriptionP">
+        </div>
+        <div class="col-auto">
+          <p class="font-weight-bold my-2">Tipo Transacción</p>
+        </div>
+        <div class="col-auto">
+          <input class= "my-2" id="compra" type="radio" name="type" value="Compra" checked> Compra
+          <input class= "my-2" id="venta" type="radio" name="type" value="Venta"> Venta
+        </div>
+      </div>
+      <div class="row container p-0 m-4">
+        <div class="col-auto">
+          <p class="font-weight-bold my-2">Tipo IVA:</p>
+        </div>
+
+        <div class="col-auto">
+          <input class= "my-2" id="basico" type="radio" name="typeIVA" value="basico"> Básico
+          <input class= "my-2" id="minimo" type="radio" name="typeIVA" value="minimo"> Mínimo
+          <input class= "my-2" id="exento" type="radio" name="typeIVA" value="exento" checked> Exento
+        </div>
+        <div class="col-auto">
+          <p class="font-weight-bold my-2">Cantidad</p>
+        </div>
+        <div class="col">
+          <input class="form-control" type="search" id="subtotal">
+        </div>
+        <div class="col p-0">
+          <div class="btn-group" role="group">
+            <button class="btn btn-light btn-block" id="btnIngresar">Guardar</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- <p class="center">ID <input id="ProductDescription"></input></p>
+ <p class="center">Nombre <input id="ProductName"></input></p>
+ <p class="center">ID Padre<input id="ProductDescriptionP"></input></p> -->
+      <!-- <br> -->
+    </div>
+    <!-- <p class="center"> Tipo Transacción <input id="compra" type="radio" name="type" value="Compra" checked> Compra
+      <input id="venta" type="radio" name="type" value="Venta"> Venta
+    </p> -->
+    <!-- <br> -->
+    <!-- <p class="center">Tipo IVA: <input id="basico" type="radio" name="typeIVA" value="basico"> Básico
+      <input id="minimo" type="radio" name="typeIVA" value="minimo"> Mínimo
+      <input id="exento" type="radio" name="typeIVA" value="exento" checked> Exento
+    </p> -->
+    <!-- <br> -->
+    <!-- <p class="center">Cantidad <input id="subtotal"></input> <input id="btnIngresar" type="button" value="Guardar">
+      </input></p>
+    <br> -->
+    <div>
+      <table>
         <thead>
           <tr>
             <th>Nombre</th>
@@ -44,23 +104,28 @@
             <th>ID Padre</th>
             <th>Precio</th>
             <th>Stock</th>
-          
+
           </tr>
         </thead>
         <tbody id="toinformation"></tbody>
       </table>
-</div>
-<p><div id="totalcompras"></div><div id="totalventas"></div></p>
-</form>
-<footer class="text-muted bg-light">
-  <div class="container">
-    <p>Este sitio fue creado por DN Servicios</p>
-    <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> por más información.</p>
-  </div>
-</footer>
+    </div>
+    <p>
+    <div id="totalcompras"></div>
+    <div id="totalventas"></div>
+    </p>
+  </form>
+  <footer class="text-muted bg-light">
+    <div class="container">
+      <p>Este sitio fue creado por DN Servicios</p>
+      <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> por más información.</p>
+    </div>
+  </footer>
 </body>
 <script src="js/jquery-3.4.1.min.js"></script>
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="js/dropzone.js"></script>
+<script src="js/init.js"></script>
 <script src="js/script.js"></script>
+
 </html>
