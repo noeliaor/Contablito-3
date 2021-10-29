@@ -5,8 +5,8 @@
 let AccessButton = document.getElementsByClassName("AccessButton")[0];
 
 document.addEventListener("DOMContentLoaded", function (e) {
- // let usersinfo = [{ username: "admin", password: "@Contablito2021" }]; //Almaceno datos de usuario administrador
-   // localStorage.setItem("usersInfo", JSON.stringify(usersinfo));
+  let usersinfo = [{ username: "admin", password: "@Contablito2021" }]; //Almaceno datos de usuario administrador
+    localStorage.setItem("usersInfo", JSON.stringify(usersinfo));
 
   AccessButton.addEventListener("click", () => { //Al presionar en el botón de ingreso:
     //Se extraen los datos del formulario;
