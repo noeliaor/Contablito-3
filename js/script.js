@@ -8,10 +8,7 @@
  //   { id: 401, name: "Ladrillo hueco", price: 390, stock: 300, minstock: 300 },
    // { id: 402, name: "Ladrillo refractario", price: 418, stock: 400, minstock: 300 },
     //{ id: 403, name: "Ladrillo de vidrio", price: 540, stock: 1000, minstock: 300 },
-
-const updateData = import("../backendContablito/controller/transaction");
-
-//];
+//]
 
 
 function alertData(theindex) {
@@ -29,8 +26,7 @@ function deleteData(index) { //Función que se ejecuta cuando se cliquea en el �
     let list = JSON.parse(localStorage.getItem("productslistSave")); //Extraigo lista de productos cargada
     if (confirm(`¿Está seguro que desea eliminar ${list[index].name}?`)){
         list.splice(index, 1); //Elimino el elemento en el ícono indicado y redefino lista 
-        updateData(1,list);
-        localStorage.setItem("productslistSave", JSON.stringify(list));
+           localStorage.setItem("productslistSave", JSON.stringify(list));
         let tbody = document.getElementById("toinformation");
         tbody.innerHTML = "";
         showData() //Muestro la nueva lista

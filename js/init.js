@@ -23,4 +23,20 @@ function cargaInicial() {
 
 document.addEventListener("DOMContentLoaded", () => {
     cargaInicial();
+    let user=localStorage.getItem('user');
+    document.getElementsByClassName("site-header sticky-top py-1 bg-dark")[0].innerHTML=`<div class="container d-flex flex-column flex-md-row justify-content-between">
+    <a class="py-2 d-none d-md-inline-block" style="color:white" href="index.html">Inventario</a>
+    <a class="py-2 d-none d-md-inline-block" style="color:white" href="form.html">Gestión de productos</a>
+    <a class="py-2 d-none d-md-inline-block" style="color:white" href="products.html">Progreso</a>
+    <a class="py-2 d-none d-md-inline-block" style="color:white" href="users.html">Gestión de usuarios</a>
+    <div class="dropdown">
+      <a style="text-align:center;height:35px; padding-top:8px" class="btn, btn-secondary, dropdown-toggle, d-none, d-md-inline-block, AccessButton" id="User" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <span style="color:white">${user}</span> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+      <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+    </svg>
+      </a>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <a class="dropdown-item" id="ToLogin" href="login.html">Cerrar sesión</a>
+      </div>
+  </div>`
 });
