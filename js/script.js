@@ -1,21 +1,8 @@
-//Lista inicial para pruebas 
-//let productslist = [ //Genero listado de productos inicial
-  //  { id: 394, name: "Tornillo 2cm", price: 20, stock: 400, minstock: 200 },
-    //{ id: 395, name: "Tornillo 3cm", price: 30, stock: 560, minstock: 200 },
-  //  { id: 396, name: "Tornillo 4cm", price: 40, stock: 280, minstock: 200 },
-    //{ id: 397, name: "Tornillo 5cm", price: 50, stock: 390, minstock: 200 },
-    //{ id: 400, name: "Ladrillo común", price: 200, stock: 500, minstock: 300 },
- //   { id: 401, name: "Ladrillo hueco", price: 390, stock: 300, minstock: 300 },
-   // { id: 402, name: "Ladrillo refractario", price: 418, stock: 400, minstock: 300 },
-    //{ id: 403, name: "Ladrillo de vidrio", price: 540, stock: 1000, minstock: 300 },
-//]
-
-
 function alertData(theindex) {
     let list = JSON.parse(localStorage.getItem("productslistSave")); //Extraigo lista de productos cargada
     if (list[theindex].stock < list[theindex].minstock) {
         classname = "color-red";
-    } else if (list[theindex].stock < list[theindex].minstock*1.2) { //Al 50% del stock mínimo
+    } else if (list[theindex].stock < list[theindex].minstock * 1.2) { //Al 50% del stock mínimo
         classname = "color-yellow";
     } else {
         classname = "color-green";
@@ -24,15 +11,15 @@ function alertData(theindex) {
 }
 function deleteData(index) { //Función que se ejecuta cuando se cliquea en el ícono de basura
     let list = JSON.parse(localStorage.getItem("productslistSave")); //Extraigo lista de productos cargada
-    if (confirm(`¿Está seguro que desea eliminar ${list[index].name}?`)){
+    if (confirm(`¿Está seguro que desea eliminar ${list[index].name}?`)) {
         list.splice(index, 1); //Elimino el elemento en el ícono indicado y redefino lista 
-           localStorage.setItem("productslistSave", JSON.stringify(list));
+        localStorage.setItem("productslistSave", JSON.stringify(list));
         let tbody = document.getElementById("toinformation");
         tbody.innerHTML = "";
         showData() //Muestro la nueva lista
     }
 
-    
+
 }
 const showData = () => {
     let tbody = document.getElementById("toinformation");
@@ -49,7 +36,7 @@ const showData = () => {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    
+
     document.getElementById("ProductDescription").value = "";
     document.getElementById("count").value = "";
     showData();
@@ -63,58 +50,76 @@ document.addEventListener("DOMContentLoaded", () => {
 const buttonIngresar = () => { //Al cliquear en botón de Guardar
     let tbody = document.getElementById("toinformation");
     let type;
+    let IVA;
+    let total;
+    let subtotal;
+    let transactioninfo = JSON.parse(localStorage.getItem("transInfo"));
     let idproduct = document.getElementById("ProductDescription").value; //Id del producto
     let count = document.getElementById("count").value;
+    let countOk = (count != 0 && count != "NaN" && count > 0);
 
     let list = JSON.parse(localStorage.getItem("productslistSave")); //Extraigo lista de productos cargada
-    if (idproduct && count) { //Si datos completos
-        for (var i = 0; i < list.length; i++) { //Recorro lista para buscar mismo ID
+    let idSearch = findId(idproduct, list); //Almacena el estado del id y la posición del producto correspondiente.
 
-            if (parseInt(idproduct) == list[i].id) {
-                let index = i;
+    if (idproduct && countOk && !idSearch[0]) { //Si datos completos de id de producto y cantidad e ID existente.
+        subtotal = parseInt(list[idSearch[1]].price) * count;
 
-                if (document.getElementById('venta').checked) {
-
-                    if (list[i].stock - parseInt(count) >= 0) {
-                        type = document.getElementById('venta').value;
-                        list[i].stock = list[i].stock - parseInt(count); //Si es una resto cantidad de vendidos
-                    } else {
-                        alert("Stock insuficiente")
-                    }
-                } else {
-                    type = document.getElementById('compra').value;
-                    list[i].stock = list[i].stock + parseInt(count); //Sino sumo
-                }
-                tbody.innerHTML = "";
-
-                localStorage.setItem("productslistSave", JSON.stringify(list)); //Guardo la nueva vista
-
-                //Gestión de alertas;
-                showData();
-
-            }
+        //Cálculo del total según IVA
+        if (document.getElementById('basico').checked) {
+            IVA = 22 / 100 * subtotal;
+            total = parseInt(subtotal) + IVA;
+        } else if (document.getElementById('minimo').checked) {
+            IVA = 10 / 100 * subtotal;
+            total = parseInt(subtotal) + IVA;
+        } else {
+            IVA = 0;
+            total = parseInt(subtotal);
         }
+        if (document.getElementById('venta').checked) {
+
+            if (list[idSearch[1]].stock - parseInt(count) >= 0) {
+                type = document.getElementById('venta').value;
+                list[idSearch[1]].stock = list[idSearch[1]].stock - parseInt(count); //Si es una resto cantidad de vendidos
+            } else {
+                alert("Stock insuficiente")
+            }
+        } else {
+            type = document.getElementById('compra').value;
+            list[idSearch[1]].stock = list[idSearch[1]].stock + parseInt(count); //Sino sumo
+        }
+
+        //ALMACENAMIENTO DE LAS TRANSACCIONES
+        tbody.innerHTML = "";
+        localStorage.setItem("productslistSave", JSON.stringify(list)); //Guardo la nueva vista
+        showData();
+        var today = new Date();
+        var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
+        transactioninfo.push({ total: total, product:list[idSearch[1]].name, type:type,date:date}); //Agrego la transacción a la lista
+        alert(transactioninfo);
+        localStorage.setItem("transInfo", JSON.stringify(transactioninfo));
+
+
     } else {
-        alert("No deben quedar campos vacíos");
+        alert("Datos de ID y/o cantidad vacíos o incorrectos.");
+        alert("Verifique que el ID ingresado es de un producto existente.")
+    }
+
+    function findId(ID, list) { //Función que devuelve true si no hay coincidencias con ID's existentes
+        let status = true;
+        let index = 0;
+        let theindex;
+        for (let product of list) {
+
+            if (ID == product.id) {
+                status = false;
+                theindex = index;
+            }
+            index += 1;
+        }
+        return [status, theindex];
     }
 
 
 
-    //    let IVA;
-    //  let total;
-    //Busco nombre del producto
-
-    //Cálculo del total según IVA
-    /*  if (document.getElementById('basico').checked) {
-          IVA = 22 / 100 * subtotal;
-          total = parseInt(subtotal) + IVA;
-      } else if (document.getElementById('minimo').checked) {
-          IVA = 10 / 100 * subtotal;
-          total = parseInt(subtotal) + IVA;
-      } else {
-          IVA = 0;
-          total = parseInt(subtotal);
-      }*/
-    // Ingresar un producto  
 };
 

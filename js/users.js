@@ -2,7 +2,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     let user = localStorage.getItem('user');
     let password = localStorage.getItem('password');
-    if (user == "admin") {
+    if (user == "admin") { //Si el usuario es administrador muestro menú para gestión de usuarios
         document.getElementById("toadmin").innerHTML = `
     <center><h3>Agregar un nuevo usuario</h3></center>
     <br></br>
@@ -30,36 +30,42 @@ document.addEventListener("DOMContentLoaded", () => {
 <div id="showusers"></div>
 ` //Contenido del HTML con valores dados por la información almacenada inicialmente
 
-    }else{
-        document.getElementById("toadmin").innerHTML =`  <center><h3>Usuario no autorizado para acceder a esta información.</h3></center>
+    } else { //Si el usuario no es administrador, no muestro la información.
+        document.getElementById("toadmin").innerHTML = `  <center><h3>Usuario no autorizado para acceder a esta información.</h3></center>
         `
     }
 
-    document.getElementById("newusersave").addEventListener("click", () => {
+    document.getElementById("newusersave").addEventListener("click", () => { //Clickeo para creación de nuevo usuario.
         let newuser = document.getElementById("newuser").value;
         let newpassword = document.getElementById("newpassword").value;
-        if (newuser && newpassword) {
-            let ispassword = prompt("Por favor, confirme su contraseña", "");
-            if (ispassword == password) {
-                alert("Usuario agregado correctamente.");
-                let userslist = JSON.parse(localStorage.getItem("usersInfo"));
-                userslist.push({ username: newuser, password: newpassword });
-                localStorage.setItem("usersInfo", JSON.stringify(userslist));
-                showData();
-            } else {
-                alert("Contraseña errónea, verifique e intente nuevamente.")
+        if (newuser && newpassword) { //Verificación de campos completos
+            if (findUser(newuser, JSON.parse(localStorage.getItem("usersInfo")))) { //Verificación de nombre de usuario no repetido
+                let ispassword = prompt("Por favor, confirme su contraseña", "");
+                if (ispassword == password) { //Si el administrador ingresó contraseña correcta agrego el usuario
+                    alert("Usuario agregado correctamente.");
+                    let userslist = JSON.parse(localStorage.getItem("usersInfo"));
+                    userslist.push({ username: newuser, password: newpassword }); //Agrego el usuario a la lista
+                    localStorage.setItem("usersInfo", JSON.stringify(userslist));
+                    showData(); //Actualizo lista de usuarios y la muestro
+                } else {
+                    alert("Contraseña errónea, verifique e intente nuevamente.")
+                }
+            }else{
+                alert("Error: ya existe un usuario con el mismo nombre.")
             }
+
         } else {
             alert("Por favor, complete los dos campos.")
         }
 
     });
-    document.getElementById("usersview").addEventListener("click", () => {
+    document.getElementById("usersview").addEventListener("click", () => { //Click para desplegar lista de usuarios
         document.getElementById("showusers").innerHTML = `  <table>
 <thead>
   <tr>
     <th>Usuario</th>
     <th>Contraseña</th>
+    <th></th>
   </tr>
 </thead>
 <tbody id="tousers"></tbody>
@@ -69,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-const showData = () => {
+const showData = () => { //Función que realiza la muestra de usuarios, va concatenando los datos de cada uno
     let tbody = document.getElementById("tousers");
     tbody.innerHTML = "";
     let userslist = JSON.parse(localStorage.getItem("usersInfo"));
@@ -82,7 +88,7 @@ const showData = () => {
 }
 function deleteData(index) { //Función que se ejecuta cuando se cliquea en el ícono de basura
     let userslist = JSON.parse(localStorage.getItem("usersInfo"));
-      if (userslist[index].username != "admin") {
+    if (userslist[index].username != "admin") {
         if (confirm(`¿Está seguro que desea eliminar a ${userslist[index].username}?`)) {
             userslist.splice(index, 1); //Elimino el elemento en el ícono indicado y redefino lista 
             localStorage.setItem("usersInfo", JSON.stringify(userslist));
@@ -90,8 +96,18 @@ function deleteData(index) { //Función que se ejecuta cuando se cliquea en el �
             tbody.innerHTML = "";
             showData() //Muestro la nueva lista
         }
-    }else {
-            alert("ERROR: el usuario administrador no se puede eliminar.")
+    } else {
+        alert("ERROR: el usuario administrador no se puede eliminar.")
+    }
+}
+
+function findUser(username, list) { //Función que devuelve true si no hay coincidencias con ID's existentes
+    let status = true;
+    for (let userinfo of list) {
+        if (username == userinfo.username) {
+            status = false;
         }
+    }
+    return status;
 }
 

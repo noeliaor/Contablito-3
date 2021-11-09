@@ -1,32 +1,12 @@
-function cargaInicial() {
-    let getlocal = localStorage.getItem("productslistSave"); // si no tengo datos cargo lista
-    if (getlocal == null || getlocal == "" || getlocal == false || getlocal == undefined) {
-
-            let categorieslist=[{idpadre:39 ,name: "Tornillo"},{idpadre:40,name: "Ladrillo"}];
-  
-        let productslist = [ //Genero listado de productos inicial
-            { id: 394, name: "Tornillo 2cm", price: 20, stock: 400, minstock: 200 },
-            { id: 395, name: "Tornillo 3cm", price: 30, stock: 560, minstock: 200 },
-            { id: 396, name: "Tornillo 4cm", price: 40, stock: 280, minstock: 200 },
-            { id: 397, name: "Tornillo 5cm", price: 50, stock: 390, minstock: 200 },
-            { id: 400, name: "Ladrillo común", price: 200, stock: 500, minstock: 300 },
-            { id: 401, name: "Ladrillo hueco", price: 390, stock: 300, minstock: 300 },
-            { id: 402, name: "Ladrillo refractario", price: 418, stock: 400, minstock: 300 },
-            { id: 403, name: "Ladrillo de vidrio", price: 540, stock: 1000, minstock: 300 },
-        ];
-        localStorage.setItem("productslistSave", JSON.stringify(productslist)); // Cargo lista por primera vez
-        localStorage.setItem("categorieslistSave", JSON.stringify(categorieslist)); //Guardo la nueva vista
-
-    }
-}
-
 
 document.addEventListener("DOMContentLoaded", () => {
-    cargaInicial();
-    let user=localStorage.getItem('user');
-    document.getElementsByClassName("site-header sticky-top py-1 bg-dark")[0].innerHTML=`<div class="container d-flex flex-column flex-md-row justify-content-between">
-    <a class="py-2 d-none d-md-inline-block" style="color:white" href="index.html">Inventario</a>
+  let user = localStorage.getItem('user');
+  document.getElementsByClassName("site-header sticky-top py-1 bg-dark")[0].innerHTML = `<div class="container d-flex flex-column flex-md-row justify-content-between">
+    <a class="py-2 d-none d-md-inline-block" style="color:white" href="index.html">Inventario  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-archive" viewBox="0 0 16 16">
+    <path d="M0 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 12.5V5a1 1 0 0 1-1-1V2zm2 3v7.5A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5V5H2zm13-3H1v2h14V2zM5 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
+  </svg></a>
     <a class="py-2 d-none d-md-inline-block" style="color:white" href="form.html">Gestión de productos</a>
+    <a class="py-2 d-none d-md-inline-block" style="color:white" href="transactions.html">Historial de transacciones</a>
     <a class="py-2 d-none d-md-inline-block" style="color:white" href="products.html">Progreso</a>
     <a class="py-2 d-none d-md-inline-block" style="color:white" href="users.html">Gestión de usuarios</a>
     <div class="dropdown">

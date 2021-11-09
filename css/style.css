@@ -51,3 +51,10 @@ td{
     display: inline-block;
     font-size: 16px;
 }
+
+.Compra{
+background-color: rgb(255, 198, 144);
+}
+.Venta{
+background-color: rgb(229, 255, 179);
+}
