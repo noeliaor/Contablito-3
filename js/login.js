@@ -68,7 +68,7 @@ if (getlocal == null || getlocal == "" || getlocal == false || getlocal == undef
  //MOVIMIENTOS
 getlocal = localStorage.getItem("transInfo"); // si no tengo datos de usuarios cargo lista
 if (getlocal == null || getlocal == "" || getlocal == false || getlocal == undefined) {
-let transinfo = [{total:"", product:"", type:"",date:""}]; //Almaceno datos de usuario administrador
+let transinfo = [{total:"",IVAtype:"", product:"", type:"",date:"",user:""}]; //Almaceno datos de usuario administrador
  localStorage.setItem("transInfo", JSON.stringify(transinfo));
  }
 };
