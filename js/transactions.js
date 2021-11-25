@@ -22,7 +22,7 @@ const getTotalSalePurchasesbyDay = (list, date, type) => {
 
 const viewChart = () => {
 
-    let list = JSON.parse(localStorage.getItem("transInfo")); //Extraigo lista de transacciones
+    let list = JSON.parse(localStorage.getItem("transInfo")); //lista de transacciones
     let auxDate = "";
     let dates = [];
     let amountSale = 0, amountPurchases = 0;
@@ -60,7 +60,7 @@ const viewChart = () => {
             }
         },
         xAxis: {
-            categories: dates,
+            categories: dates, //fechas para el eje x, dates es un array
             /* accessibility: {
                  rangeDescription: 'Fecha'
              },*/
@@ -85,10 +85,10 @@ const viewChart = () => {
 
         series: [{
             name: 'VENTA',
-            data: colAmountSale
+            data: colAmountSale //array de ventas
         }, {
             name: 'COMPRA',
-            data: colAmountPurchases
+            data: colAmountPurchases //array de compras
         }],
 
         responsive: {
