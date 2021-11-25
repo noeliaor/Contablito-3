@@ -4,7 +4,7 @@ function alertData(theindex) {
     let list = JSON.parse(localStorage.getItem("productslistSave")); //Extraigo lista de productos cargada
     if (list[theindex].stock < list[theindex].minstock) {
         classname = "color-red";
-    } else if (list[theindex].stock < list[theindex].minstock * 1.2) { //Al 50% del stock mínimo
+    } else if (list[theindex].stock < list[theindex].minstock * 1.5) { //Al 50% del stock mínimo
         classname = "color-yellow";
     } else {
         classname = "color-green";

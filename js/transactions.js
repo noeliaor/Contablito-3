@@ -8,7 +8,7 @@ const showData = () => {
 
 
 
-//Función que devuelve el total de ventas o comparas para una fecha 
+//Función que devuelve el total de ventas o compras para una fecha 
 const getTotalSalePurchasesbyDay = (list, date, type) => {
     let total = 0;
     for (let i = 1; i < list.length; i++) {
@@ -21,8 +21,42 @@ const getTotalSalePurchasesbyDay = (list, date, type) => {
 
 
 const viewChart = () => {
-
-    let list = JSON.parse(localStorage.getItem("transInfo")); //lista de transacciones
+    //PARA EMPLEAR DATOS DE PRUEBA COMENTAR LÍNEA 25 Y DESCOMENTAR DE LA 26 A LA 59.
+    let list = JSON.parse(localStorage.getItem("transInfo")); //lista de transacciones 
+   /* let list=[{"total":"","IVAtype":"","product":"","type":"","date":"","user":""},
+    {"total":3000,"IVAtype":"Basico","product":"Tornillo 3cm","type":"Compra","date":"25-11-2021","user":"admin"},
+    {"total":2970,"IVAtype":"Basico","product":"Tornillo 3cm","type":"Compra","date":"25-11-2021","user":"admin"},
+    {"total":4000,"IVAtype":"Basico","product":"Tornillo 4cm","type":"Compra","date":"25-11-2021","user":"admin"},
+    {"total":30000,"IVAtype":"Basico","product":"Tornillo 3cm","type":"Compra","date":"25-11-2021","user":"admin"},
+    {"total":8000,"IVAtype":"Basico","product":"Tornillo 4cm","type":"Venta","date":"25-11-2021","user":"admin"},
+    {"total":10000,"IVAtype":"Basico","product":"Tornillo 5cm","type":"Compra","date":"25-11-2021","user":"admin"},
+    {"total":2200,"IVAtype":"Basico","product":"Ladrillo común","type":"Compra","date":"25-11-2021","user":"admin"},
+    {"total":1000,"IVAtype":"Basico","product":"Tornillo 2cm","type":"Compra","date":"25-11-2021","user":"admin"},
+    {"total":48800,"IVAtype":"Basico","product":"Tornillo 4cm","type":"Compra","date":"25-11-2021","user":"camila"},
+    {"total":5000,"IVAtype":"Basico","product":"Tornillo 5cm","type":"Venta","date":"25-11-2021","user":"camila"},
+    {"total":3000,"IVAtype":"Basico","product":"Tornillo 3cm","type":"Compra","date":"26-11-2021","user":"admin"},
+    {"total":2927,"IVAtype":"Basico","product":"Tornillo 3cm","type":"Venta","date":"26-11-2021","user":"admin"},
+    {"total":4060,"IVAtype":"Basico","product":"Tornillo 4cm","type":"Compra","date":"26-11-2021","user":"admin"},
+    {"total":3000,"IVAtype":"Basico","product":"Tornillo 3cm","type":"Compra","date":"26-11-2021","user":"admin"},
+    {"total":8600,"IVAtype":"Basico","product":"Tornillo 4cm","type":"Venta","date":"26-11-2021","user":"admin"},
+    {"total":10000,"IVAtype":"Basico","product":"Tornillo 5cm","type":"Compra","date":"27-11-2021","user":"admin"},
+    {"total":2200,"IVAtype":"Basico","product":"Ladrillo común","type":"Compra","date":"27-11-2021","user":"admin"},
+    {"total":1000,"IVAtype":"Basico","product":"Tornillo 2cm","type":"Venta","date":"27-11-2021","user":"admin"},
+    {"total":48800,"IVAtype":"Basico","product":"Tornillo 4cm","type":"Compra","date":"27-11-2021","user":"camila"},
+    {"total":5000,"IVAtype":"Basico","product":"Tornillo 5cm","type":"Venta","date":"27-11-2021","user":"camila"},
+    {"total":1000,"IVAtype":"Basico","product":"Tornillo 5cm","type":"Compra","date":"28-11-2021","user":"admin"},
+    {"total":2200,"IVAtype":"Basico","product":"Ladrillo común","type":"Compra","date":"28-11-2021","user":"admin"},
+    {"total":6000,"IVAtype":"Basico","product":"Tornillo 2cm","type":"Venta","date":"28-11-2021","user":"admin"},
+    {"total":4800,"IVAtype":"Basico","product":"Tornillo 4cm","type":"Compra","date":"28-11-2021","user":"camila"},
+    {"total":5000,"IVAtype":"Basico","product":"Tornillo 5cm","type":"Venta","date":"29-11-2021","user":"camila"},
+    {"total":6090,"IVAtype":"Basico","product":"Tornillo 2cm","type":"Venta","date":"29-11-2021","user":"admin"},
+    {"total":4800,"IVAtype":"Basico","product":"Tornillo 4cm","type":"Compra","date":"29-11-2021","user":"camila"},
+    {"total":9000,"IVAtype":"Basico","product":"Tornillo 5cm","type":"Venta","date":"29-11-2021","user":"camila"},
+    {"total":4800,"IVAtype":"Basico","product":"Tornillo 4cm","type":"Compra","date":"30-11-2021","user":"camila"},
+    {"total":5000,"IVAtype":"Basico","product":"Tornillo 5cm","type":"Venta","date":"30-11-2021","user":"camila"},
+    {"total":6000,"IVAtype":"Basico","product":"Tornillo 2cm","type":"Venta","date":"30-11-2021","user":"admin"},
+    {"total":4800,"IVAtype":"Basico","product":"Tornillo 4cm","type":"Compra","date":"30-11-2021","user":"camila"},
+    {"total":5000,"IVAtype":"Basico","product":"Tornillo 5cm","type":"Venta","date":"30-11-2021","user":"camila"}];*/
     let auxDate = "";
     let dates = [];
     let amountSale = 0, amountPurchases = 0;

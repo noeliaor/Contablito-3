@@ -7,8 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   </svg></a>
     <a class="py-2 d-none d-md-inline-block" style="color:white" href="productsmanagement.html">Gestión de productos</a>
     <a class="py-2 d-none d-md-inline-block" style="color:white" href="transactions.html">Historial de transacciones</a>
-    <a class="py-2 d-none d-md-inline-block" style="color:white" href="progress.html">Progreso</a>
-    <a class="py-2 d-none d-md-inline-block" style="color:white" href="users.html">Gestión de usuarios</a>
+     <a class="py-2 d-none d-md-inline-block" style="color:white" href="users.html">Gestión de usuarios</a>
     <div class="dropdown">
       <a style="text-align:center;height:35px; padding-top:6px;padding-bottom:6px;" class="btn, btn-secondary, dropdown-toggle, d-none, d-md-inline-block, AccessButton" id="User" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <span style="color:white">${user}</span> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
