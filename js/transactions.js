@@ -6,24 +6,43 @@ const showData = () => {
     }
 }
 
+
+
+//Función que devuelve el total de ventas o comparas para una fecha 
+const getTotalSalePurchasesbyDay = (list, date, type) => {
+    let total = 0;
+    for (let i = 1; i < list.length; i++) {
+        if ((date == list[i].date) && (type == list[i].type)) {
+            total += parseInt(list[i].total);
+        }
+    }
+    return total;
+}
+
+
 const viewChart = () => {
 
-    let list = JSON.parse(localStorage.getItem("transInfo")).reverse(); //Extraigo lista de transacciones
+    let list = JSON.parse(localStorage.getItem("transInfo")); //Extraigo lista de transacciones
     let auxDate = "";
     let dates = [];
-    let amountSale;
+    let amountSale = 0, amountPurchases = 0;
+    let colAmountSale = [], colAmountPurchases = [];
 
-    for (let i = 0; i < list.length - 1; i++) {
-        if (auxDate != list[i].date){
+    for (let i = 1; i < list.length; i++) {
+
+        if (auxDate != list[i].date) {
             auxDate = list[i].date;
             dates.push(list[i].date);
+
+            amountSale = getTotalSalePurchasesbyDay(list, auxDate, 'Venta');
+            amountPurchases = getTotalSalePurchasesbyDay(list, auxDate, 'Compra');
+
+            colAmountSale.push(amountSale);
+            colAmountPurchases.push(amountPurchases);
         }
-        
-        //Aca falta sumar totales por compra y venta para mostrarlos (*)
-        amountSale
+
     }
 
-    console.log("dates: " + dates);
 
     Highcharts.chart('container', {
 
@@ -40,17 +59,15 @@ const viewChart = () => {
                 text: 'Importe'
             }
         },
-
         xAxis: {
             categories: dates,
-            accessibility: {
-                rangeDescription: 'Fecha'
-            },
+            /* accessibility: {
+                 rangeDescription: 'Fecha'
+             },*/
             title: {
                 text: 'Fecha'
             }
         },
-
         legend: {
             layout: 'vertical',
             align: 'right',
@@ -58,20 +75,20 @@ const viewChart = () => {
         },
 
         plotOptions: {
-              series: {
+            series: {
                 label: {
-                  connectorAllowed: false
+                    connectorAllowed: false
                 }
-            //     pointStart: 2010
-              }
+                //     pointStart: 2010
+            }
         },
 
         series: [{
             name: 'VENTA',
-            data: [43934]   //(*)
+            data: colAmountSale
         }, {
-            name: 'COMPRA',  //(*)
-            data: [24916]
+            name: 'COMPRA',
+            data: colAmountPurchases
         }],
 
         responsive: {

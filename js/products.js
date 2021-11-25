@@ -1,3 +1,5 @@
+
+
 function alertData(theindex) {
     let list = JSON.parse(localStorage.getItem("productslistSave")); //Extraigo lista de productos cargada
     if (list[theindex].stock < list[theindex].minstock) {
@@ -39,6 +41,13 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("totalcompras", JSON.stringify(0)); //Almaceno total de compras y ventas para progreso
     localStorage.setItem("totalventas", JSON.stringify(0));
     document.getElementById("btnIngresar").addEventListener("click", buttonIngresar);
+
+    // $(document).ready(function () {
+    //     $(".bi-trash").hover(function () {
+    //         $(this).toggleClass("animate__pulse");
+    //     });
+    //   });
+
 });
 
 const buttonIngresar = () => { //Al cliquear en botón de Guardar
@@ -89,14 +98,14 @@ const buttonIngresar = () => { //Al cliquear en botón de Guardar
             transactionOK = true;
         }
         if (transactionOK) { //Si se completó la transacción correctamente la almaceno;
-        
+
             //ALMACENAMIENTO DE LAS TRANSACCIONES
             tbody.innerHTML = "";
             localStorage.setItem("productslistSave", JSON.stringify(list)); //Guardo la nueva vista
             showData();
             var today = new Date();
             var date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
-            transactioninfo.push({ total: total, IVAtype: IVAtype, product: list[idSearch[1]].name, type: type, date: date,user:localStorage.getItem('user') }); //Agrego la transacción a la lista
+            transactioninfo.push({ total: total, IVAtype: IVAtype, product: list[idSearch[1]].name, type: type, date: date, user: localStorage.getItem('user') }); //Agrego la transacción a la lista
             localStorage.setItem("transInfo", JSON.stringify(transactioninfo));
             alert("La transacción se completó correctamente.");
         };
